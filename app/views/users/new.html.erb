@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <h1>Sign-up</h1>
+  <form>
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+    <label>Email:
+      <input type="text" name="user[email]" placeholder="email">
+    </label>
+
+    <label>Password:
+      <input type="text" name="user[password]" placeholder="Please, nothing stupid...">
+    </label>
+
+    <label>
+      <button type="submit" formaction= "<%= users_url %>" formmethod="post">
+        Register
+      </button>
+    </label>
+
+    <ul>
+      <% unless flash[:errors].nil? %>
+        <% flash[:errors].each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      <% end %>
+    </ul>
+
+  </form>
+</html>

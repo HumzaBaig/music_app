@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <h1>New Band/Artist</h1>
+  <form>
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+    <label>
+      <input type="textbox" name="band[name]" placeholder="Name">
+    </label>
+
+    <label>
+      <button type="submit" formaction= "<%= bands_url %>" formmethod="post">
+        Add
+      </button>
+    </label>
+  </form>
+
+  <ul>
+    <% unless flash[:errors].nil? %>
+      <% flash[:errors].each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    <% end %>
+  </ul>
+</html>

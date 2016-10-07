@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <h1>New Album by <%= @band.name %></h1>
+  <form>
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+    <label>
+      <select name="album[band_id]">
+        <% @bands.each do |band|  %>
+          <option value="<%= band.id %>" <%= "checked" if @band.id == band.id %>>
+            <%= band.name %>
+          </option>
+          <% end %>
+      </select>
+    </label>
+
+    <label>
+      <input type="textbox" name="album[title]" placeholder="Album Title">
+    </label>
+
+    <br><br>
+
+    <label>Type of album:
+      <br>
+      <input type="radio" name="album[recording]" value="Studio" checked>Studio
+      <br>
+      <input type="radio" name="album[recording]" value="Live">Live
+    </label>
+
+    <br><br>
+
+    <label>
+      <button type="submit" formaction= "<%= albums_url %>" formmethod="post">
+        Add
+      </button>
+    </label>
+  </form>
+
+  <ul>
+    <% unless flash[:errors].nil? %>
+      <% flash[:errors].each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    <% end %>
+  </ul>
+</html>

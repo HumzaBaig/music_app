@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <h1>Bands/Artists</h1>
+  <br>
+  <ul>
+    <% Band.all.each do |band| %>
+      <li><%=link_to band.name, band_url(band.id)  %></li>
+    <% end %>
+
+    <li><%= link_to "Add Band/Artist", new_band_url %></li>
+  </ul>
+
+  <br>
+
+  <ul>
+    <% unless flash[:messages].nil? %>
+      <% flash[:messages].each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    <% end %>
+  </ul>
+</html>

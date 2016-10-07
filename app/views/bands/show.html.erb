@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <h1><%= @band.name %>'s Albums</h1>
+  <br>
+  <ul>
+    <% @band.albums.all.each do |album| %>
+      <li><%=link_to album.title, album_url(album.id)  %></li>
+    <% end %>
+
+    <li><%= link_to "Add Album", new_band_album_url(@band.id) %></li>
+  </ul>
+
+  <br>
+
+  <%= button_to "Edit", edit_band_url(@band.id), method: :get%>
+  <%= button_to "Delete", band_url(@band.id), method: :delete%>
+
+  &nbsp &nbsp
+
+  <%= button_to "Back", bands_url, method: :get%>
+
+  <br><br>
+
+  <ul>
+    <% unless flash[:messages].nil? %>
+      <% flash[:messages].each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    <% end %>
+  </ul>
+</html>
